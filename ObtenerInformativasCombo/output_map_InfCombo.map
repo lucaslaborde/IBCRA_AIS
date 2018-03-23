@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" targetNamespace="http://IBCRA_AIS/ObtenerInformativasCombo/output_map_InfCombo" version="8.0.4.0" xmlns:map="http://IBCRA_AIS/ObtenerInformativasCombo/output_map_InfCombo">
+    <input correlationContext="" message="{http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc}ObtenerComboInformativasResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://IBCRAAI/AIS/AIS_ObtenerInformativasCombo}invokeResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io5" uri="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"/>
+        <namespace kind="supplement" prefix="io4" uri="http://www.w3.org/2003/05/soap-envelope"/>
+        <namespace kind="supplement" prefix="io3" uri="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"/>
+        <namespace kind="supplement" prefix="io2" uri="http://www.ibm.com/websphere/sibx/smo/v6.0.1"/>
+        <namespace kind="supplement" prefix="in29" uri="http://IBCRA_Mediaciones_Lib/ObtenerMaximoDiaHabilMes"/>
+        <namespace kind="supplement" prefix="in28" uri="http://IBCRA_Mediaciones_Lib/ObtenerFechaPorDiaHabilAnual"/>
+        <namespace kind="supplement" prefix="in27" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativasReintento"/>
+        <namespace kind="supplement" prefix="in26" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativaRectificativa"/>
+        <namespace kind="supplement" prefix="in25" uri="http://IBCRA_Mediaciones_Lib/ObtenerActividadesInformativa"/>
+        <namespace kind="supplement" prefix="in24" uri="http://IBCRA_Mediaciones_Lib/ConsultaInformativaGruposBPM"/>
+        <namespace kind="supplement" prefix="in23" uri="http://IBCRA_Mediaciones_Lib/ObtenerComboInformativas"/>
+        <namespace kind="supplement" prefix="io6" uri="http://www.w3.org/2005/08/addressing"/>
+        <namespace kind="supplement" prefix="in22" uri="http://IBCRA_Mediaciones_Lib/ObtenerFechaPorDiaHabilSemanalC"/>
+        <namespace kind="supplement" prefix="in21" uri="http://IBCRA_Mediaciones_Lib/ObtenerMaximoDiaHabilSemanalC"/>
+        <namespace kind="supplement" prefix="in20" uri="http://IBCRA_Mediaciones_Lib/ConsultaInformativaPorID"/>
+        <namespace kind="supplement" prefix="in2" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativasPlanificadas"/>
+        <namespace kind="supplement" prefix="in4" uri="http://IBCRA_Mediaciones_Lib/ObtenerFechaPorDiaHabilSemestre"/>
+        <namespace kind="supplement" prefix="in3" uri="http://IBCRA_Mediaciones_Lib/ObtenerComentarioSolicitud"/>
+        <namespace kind="supplement" prefix="in" uri="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        <namespace kind="supplement" prefix="in19" uri="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="in18" uri="wsdl.http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="in15" uri="http://IBCRA_Mediaciones_Lib/ObtenerDatosPortal"/>
+        <namespace kind="supplement" prefix="in14" uri="http://IBCRA_Mediaciones_Lib/ObtenerTeamInformativa"/>
+        <namespace kind="supplement" prefix="in17" uri="http://IBCRA_Mediaciones_Lib/ObtenerMaximoDiaHabilAnual"/>
+        <namespace kind="supplement" prefix="in16" uri="http://IBCRA_Mediaciones_Lib/ObtenerPeriodoFecha"/>
+        <namespace kind="supplement" prefix="in11" uri="http://IBCRA_Mediaciones_Lib/ObtenerMaximoDiaHabilSemestre"/>
+        <namespace kind="supplement" prefix="in9" uri="http://IBCRA_Mediaciones_Lib/ObtenerSolicitudInformativa"/>
+        <namespace kind="supplement" prefix="in10" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativaDemanda"/>
+        <namespace kind="supplement" prefix="in31" uri="http://IBCRA_Mediaciones_Lib/ConsultaInformativaPorFechas"/>
+        <namespace kind="supplement" prefix="in13" uri="http://IBCRA_Mediaciones_Lib/ObtenerFechaPorDiaHabilMes"/>
+        <namespace kind="supplement" prefix="in30" uri="http://IBCRA_Mediaciones_Lib/ObtenerFechaPorDiaHabilTrimestre"/>
+        <namespace kind="supplement" prefix="in12" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativasPlanificadasPorFecha"/>
+        <namespace kind="supplement" prefix="in33" uri="http://IBCRA_Mediaciones_Lib/ConsultaInformativaRectificativas"/>
+        <namespace kind="supplement" prefix="in5" uri="http://IBCRA_Mediaciones_Lib/ObtenerRolesDeActividad"/>
+        <namespace kind="supplement" prefix="in32" uri="http://IBCRA_Mediaciones_Lib/ObtenerSolicitudEstadoIdCUP"/>
+        <namespace kind="supplement" prefix="in6" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativas"/>
+        <namespace kind="supplement" prefix="in35" uri="http://IBCRA_Mediaciones_Lib/ObtenerHistoricoInformativa"/>
+        <namespace kind="supplement" prefix="in7" uri="http://IBCRA_Mediaciones_Lib/ObtenerRolesDeInformativa"/>
+        <namespace kind="supplement" prefix="in34" uri="http://IBCRA_Mediaciones_Lib/IniciarIntanciaInformativa_InsertarSolicitud"/>
+        <namespace kind="supplement" prefix="in8" uri="http://IBCRA_Mediaciones_Lib/ObtenerMaximoDiaHabilTrimestre"/>
+        <namespace kind="supplement" prefix="out3" uri="http://IBCRAAI/AIS/AIS_ObtenerInformativasCombo"/>
+        <namespace kind="supplement" prefix="out2" uri="wsdl.http://IBCRAAI/AIS/AIS_ObtenerInformativasCombo"/>
+        <namespace kind="supplement" prefix="out" uri="http://IBCRABO"/>
+    </namespaces>
+    <mappingDeclaration name="output_map_InfCombo">
+        <input path="body"/>
+        <output path="body"/>
+        <foreach>
+            <input path="ObtenerComboInformativasResponse/output_ObtenerComboInformativas/combos"/>
+            <output path="invokeResponse/Informativas/InformativasComboConsulta"/>
+            <convert>
+                <input path="id_informativa"/>
+                <output path="IdInformativa"/>
+            </convert>
+            <move>
+                <input path="informativa_nombre"/>
+                <output path="Informativa_Descripcion"/>
+            </move>
+            <convert>
+                <input path="id_frecuencia"/>
+                <output path="IdFrecuencia"/>
+            </convert>
+            <move>
+                <input path="frecuencia_descripcion"/>
+                <output path="Frecuencia_Descripcion"/>
+            </move>
+        </foreach>
+    </mappingDeclaration>
+</mappingRoot>

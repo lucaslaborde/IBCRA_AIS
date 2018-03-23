@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc" xmlns:ns1_1="http://IBCRAAI/AIS/AIS_obtenerPeriodoCabecera" name="Med_ObtenerPeriodoCabecera" targetNamespace="http://IBCRA_AIS/ObtenerPeriodoCabecera/Med_ObtenerPeriodoCabecera">
+  <import location="AIS_obtenerPeriodoCabecera.wsdl" namespace="http://IBCRAAI/AIS/AIS_obtenerPeriodoCabecera"/>
+  <import location="ObtenerActividadDesc/ObtenerActividadDesc.wsdl" namespace="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout.retryOn" group="IBCRA_AIS.Med_ObtenerPeriodoCabecera" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout.retryCount" group="IBCRA_AIS.Med_ObtenerPeriodoCabecera" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout.retryDelay" group="IBCRA_AIS.Med_ObtenerPeriodoCabecera" value="0"/>
+  <reference name="ObtenerActividadDescPartner" portType="ns1:ObtenerActividadDesc"/>
+  <interface portType="ns1_1:AIS_obtenerPeriodoCabecera">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Double-click input_map to implement the input map.
+2. Complete the remaining task in the response flow.</note>
+        <node displayName="invoke : AIS_obtenerPeriodoCabecera" name="AIS_obtenerPeriodoCabecera_invoke_Input" type="Input">
+          <outputTerminal type="ns1_1:invokeMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="ObtenerAnualidadMesPeriodoPorSolicitud : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout" type="Callout">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerAnualidadMesPeriodoPorSolicitud"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.Med_ObtenerPeriodoCabecera" promotedPropertyName="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.Med_ObtenerPeriodoCabecera" promotedPropertyName="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.Med_ObtenerPeriodoCabecera" promotedPropertyName="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout.retryDelay"/>
+          <inputTerminal type="ns1:ObtenerAnualidadMesPeriodoPorSolicitudRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerPeriodoCabecera/input_map_req_3.xsl"/>
+          <property name="XMXMap" value="ObtenerPeriodoCabecera/input_map_req_3.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1_1:invokeMsg"/>
+          <outputTerminal type="ns1:ObtenerAnualidadMesPeriodoPorSolicitudRequestMsg">
+            <wire targetNode="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <note mfcex:x="20" mfcex:y="250">TODO: Double-click output_map to implement the output map.</note>
+        <node displayName="ObtenerAnualidadMesPeriodoPorSolicitud : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerAnualidadMesPeriodoPorSolicitud_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerAnualidadMesPeriodoPorSolicitud"/>
+          <outputTerminal type="ns1:ObtenerAnualidadMesPeriodoPorSolicitudResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="ns1:ObtenerAnualidadMesPeriodoPorSolicitudRequestMsg"/>
+        </node>
+        <node displayName="invoke : AIS_obtenerPeriodoCabecera" name="AIS_obtenerPeriodoCabecera_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1_1:invokeResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerPeriodoCabecera/output_map_res_3.xsl"/>
+          <property name="XMXMap" value="ObtenerPeriodoCabecera/output_map_res_3.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:ObtenerAnualidadMesPeriodoPorSolicitudResponseMsg"/>
+          <outputTerminal type="ns1_1:invokeResponseMsg">
+            <wire targetNode="AIS_obtenerPeriodoCabecera_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow>
+        <node displayName="invoke : AIS_obtenerPeriodoCabecera" name="AIS_obtenerPeriodoCabecera_invoke_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail1"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_obtenerPeriodoCabecera" name="AIS_obtenerPeriodoCabecera_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1_1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail1" type="Fail">
+          <inputTerminal/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRAAI/AIS/AIS_InsertCUP" xmlns:ns2="http://IBCRA_Mediaciones_Lib/Inserts/Inserts" name="InsertarCup_Med" targetNamespace="http://IBCRA_AIS/InsertarCUP/InsertarCup_Med">
+  <import location="AIS_InsertCUP.wsdl" namespace="http://IBCRAAI/AIS/AIS_InsertCUP"/>
+  <import location="InsertarComentario/Inserts.wsdl" namespace="http://IBCRA_Mediaciones_Lib/Inserts/Inserts"/>
+  <promotedProperty name="InsertsPartner_InsertarCUP_Callout.retryOn" group="IBCRA_AIS.InsertarCup_Med" value="0"/>
+  <promotedProperty name="InsertsPartner_InsertarCUP_Callout.retryCount" group="IBCRA_AIS.InsertarCup_Med" value="0"/>
+  <promotedProperty name="InsertsPartner_InsertarCUP_Callout.retryDelay" group="IBCRA_AIS.InsertarCup_Med" value="0"/>
+  <reference name="InsertsPartner" portType="ns2:Inserts"/>
+  <interface portType="ns1:AIS_InsertCUP">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Double-click input_map to implement the input map.
+2. Complete the remaining task in the response flow.</note>
+        <node displayName="invoke : AIS_InsertCUP" name="AIS_InsertCUP_invoke_Input" type="Input">
+          <outputTerminal type="ns1:invokeMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="InsertarCUP : InsertsPartner" name="InsertsPartner_InsertarCUP_Callout" type="Callout">
+          <property name="referenceName" value="InsertsPartner"/>
+          <property name="operationName" value="InsertarCUP"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.InsertarCup_Med" promotedPropertyName="InsertsPartner_InsertarCUP_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.InsertarCup_Med" promotedPropertyName="InsertsPartner_InsertarCUP_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.InsertarCup_Med" promotedPropertyName="InsertsPartner_InsertarCUP_Callout.retryDelay"/>
+          <inputTerminal type="ns2:InsertarCUPRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="xslt/input_map_req_2.xsl"/>
+          <property name="XMXMap" value="xslt/input_map_req_2.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:invokeMsg"/>
+          <outputTerminal type="ns2:InsertarCUPRequestMsg">
+            <wire targetNode="InsertsPartner_InsertarCUP_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <note mfcex:x="20" mfcex:y="250">TODO: Double-click output_map to implement the output map.</note>
+        <node displayName="InsertarCUP : InsertsPartner" name="InsertsPartner_InsertarCUP_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="InsertsPartner"/>
+          <property name="operationName" value="InsertarCUP"/>
+          <outputTerminal type="ns2:InsertarCUPResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="ns2:InsertarCUPRequestMsg">
+            <wire targetNode="Fail1"/>
+          </failTerminal>
+        </node>
+        <node displayName="invoke : AIS_InsertCUP" name="AIS_InsertCUP_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="xslt/output_map_res_2.xsl"/>
+          <property name="XMXMap" value="xslt/output_map_res_2.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns2:InsertarCUPResponseMsg"/>
+          <outputTerminal type="ns1:invokeResponseMsg">
+            <wire targetNode="AIS_InsertCUP_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="Fail1" type="Fail">
+          <inputTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow>
+        <node displayName="invoke : AIS_InsertCUP" name="AIS_InsertCUP_invoke_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail1"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_InsertCUP" name="AIS_InsertCUP_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail1" type="Fail">
+          <inputTerminal/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

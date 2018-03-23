@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc" xmlns:ns1_1="http://IBCRAAI/AIS/AIS_ObtenerRolesDeActividad" name="ObtenerRolesDeActividad" targetNamespace="http://IBCRA_AIS/ObtenerRolesDeActividad/ObtenerRolesDeActividad">
+  <import location="AIS_ObtenerRolesDeActividad.wsdl" namespace="http://IBCRAAI/AIS/AIS_ObtenerRolesDeActividad"/>
+  <import location="ObtenerActividadDesc/ObtenerActividadDesc.wsdl" namespace="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+  <promotedProperty name="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout.retryOn" group="IBCRA_AIS.ObtenerRolesDeActividad" value="0"/>
+  <promotedProperty name="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout.retryCount" group="IBCRA_AIS.ObtenerRolesDeActividad" value="0"/>
+  <promotedProperty name="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout.retryDelay" group="IBCRA_AIS.ObtenerRolesDeActividad" value="0"/>
+  <reference name="SocioObtenerActividadDesc" portType="ns1:ObtenerActividadDesc"/>
+  <interface portType="ns1_1:AIS_ObtenerRolesDeActividad">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Efectúe una doble pulsación en input_map para implementar la correlación de entrada.
+2. Complete el resto de tareas del flujo de respuesta.</note>
+        <node displayName="invoke : AIS_ObtenerRolesDeActividad" name="AIS_ObtenerRolesDeActividad_invoke_Input" type="Input">
+          <outputTerminal type="ns1_1:invokeMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="ObtenerRolesDeActividad : SocioObtenerActividadDesc" name="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout" type="Callout">
+          <property name="referenceName" value="SocioObtenerActividadDesc"/>
+          <property name="operationName" value="ObtenerRolesDeActividad"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.ObtenerRolesDeActividad" promotedPropertyName="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.ObtenerRolesDeActividad" promotedPropertyName="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.ObtenerRolesDeActividad" promotedPropertyName="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout.retryDelay"/>
+          <inputTerminal type="ns1:ObtenerRolesDeActividadRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerRolesDeActividad/input_map_RolesActividad.xsl"/>
+          <property name="XMXMap" value="ObtenerRolesDeActividad/input_map_RolesActividad.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1_1:invokeMsg"/>
+          <outputTerminal type="ns1:ObtenerRolesDeActividadRequestMsg">
+            <wire targetNode="SocioObtenerActividadDesc_ObtenerRolesDeActividad_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <note mfcex:x="20" mfcex:y="250">TODO: Efectúe una doble pulsación en output_map para implementar la correlación de salida.</note>
+        <node displayName="ObtenerRolesDeActividad : SocioObtenerActividadDesc" name="SocioObtenerActividadDesc_ObtenerRolesDeActividad_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="SocioObtenerActividadDesc"/>
+          <property name="operationName" value="ObtenerRolesDeActividad"/>
+          <outputTerminal type="ns1:ObtenerRolesDeActividadResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="ns1:ObtenerRolesDeActividadRequestMsg">
+            <wire targetNode="Fail1"/>
+          </failTerminal>
+        </node>
+        <node displayName="invoke : AIS_ObtenerRolesDeActividad" name="AIS_ObtenerRolesDeActividad_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1_1:invokeResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerRolesDeActividad/output_map_RolesActividad.xsl"/>
+          <property name="XMXMap" value="ObtenerRolesDeActividad/output_map_RolesActividad.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:ObtenerRolesDeActividadResponseMsg"/>
+          <outputTerminal type="ns1_1:invokeResponseMsg">
+            <wire targetNode="AIS_ObtenerRolesDeActividad_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="Fail1" type="Fail">
+          <inputTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow>
+        <node displayName="invoke : AIS_ObtenerRolesDeActividad" name="AIS_ObtenerRolesDeActividad_invoke_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail1"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_ObtenerRolesDeActividad" name="AIS_ObtenerRolesDeActividad_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1_1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail1" type="Fail">
+          <inputTerminal/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

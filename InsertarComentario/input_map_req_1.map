@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" targetNamespace="http://IBCRA_AIS/InsertarComentario/input_map_req_1" version="8.0.4.0" xmlns:map="http://IBCRA_AIS/InsertarComentario/input_map_req_1">
+    <input correlationContext="" message="{http://IBCRAAI/AIS/AIS_InsertarComentario}invokeMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://IBCRA_Mediaciones_Lib/Inserts/Inserts}InsertarComentarioRequestMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in2" uri="http://IBCRABO"/>
+        <namespace kind="supplement" prefix="in3" uri="http://IBCRAAI/AIS/AIS_InsertarComentario"/>
+        <namespace kind="supplement" prefix="io5" uri="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"/>
+        <namespace kind="supplement" prefix="io4" uri="http://www.w3.org/2003/05/soap-envelope"/>
+        <namespace kind="supplement" prefix="io3" uri="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"/>
+        <namespace kind="supplement" prefix="io2" uri="http://www.ibm.com/websphere/sibx/smo/v6.0.1"/>
+        <namespace kind="supplement" prefix="io6" uri="http://www.w3.org/2005/08/addressing"/>
+        <namespace kind="supplement" prefix="in" uri="wsdl.http://IBCRAAI/AIS/AIS_InsertarComentario"/>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        <namespace kind="supplement" prefix="out3" uri="http://IBCRA_Mediaciones_Lib/InsertarComentario"/>
+        <namespace kind="supplement" prefix="out2" uri="wsdl.http://IBCRA_Mediaciones_Lib/Inserts/Inserts"/>
+        <namespace kind="supplement" prefix="out" uri="http://IBCRA_Mediaciones_Lib/Inserts/Inserts"/>
+    </namespaces>
+    <mappingDeclaration name="input_map_req_1">
+        <input path="body"/>
+        <output path="body"/>
+        <move>
+            <input path="invoke/ComentariosInformativa/Solicitud_Id"/>
+            <output path="InsertarComentario/input_InsertarComentario/Solicitud_Id"/>
+        </move>
+        <move>
+            <input path="invoke/ComentariosInformativa/Comentario"/>
+            <output path="InsertarComentario/input_InsertarComentario/Comentario"/>
+        </move>
+        <move>
+            <input path="invoke/ComentariosInformativa/Legajo"/>
+            <output path="InsertarComentario/input_InsertarComentario/Legajo"/>
+        </move>
+        <move>
+            <input path="invoke/ComentariosInformativa/LegajoDescripcion"/>
+            <output path="InsertarComentario/input_InsertarComentario/LegajoDescripcion"/>
+        </move>
+        <move>
+            <input path="invoke/ComentariosInformativa/Actividad_Id"/>
+            <output path="InsertarComentario/input_InsertarComentario/Actividad_Id"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" targetNamespace="http://IBCRA_AIS/ObtenerComentarioSolicitud/output_map_res_1" version="8.0.4.0" xmlns:map="http://IBCRA_AIS/ObtenerComentarioSolicitud/output_map_res_1">
+    <input correlationContext="" message="{http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc}ObtenerComentarioSolicitudResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://IBCRAAI/AIS/AIS_ObtenerComentarioSolicitud}invokeResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in2" uri="http://IBCRA_Mediaciones_Lib/ObtenerComentarioSolicitud"/>
+        <namespace kind="supplement" prefix="in4" uri="http://IBCRA_Mediaciones_Lib/ObtenerDatosPortal"/>
+        <namespace kind="supplement" prefix="in3" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativas"/>
+        <namespace kind="supplement" prefix="io5" uri="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"/>
+        <namespace kind="supplement" prefix="io4" uri="http://www.w3.org/2003/05/soap-envelope"/>
+        <namespace kind="supplement" prefix="io3" uri="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"/>
+        <namespace kind="supplement" prefix="io2" uri="http://www.ibm.com/websphere/sibx/smo/v6.0.1"/>
+        <namespace kind="supplement" prefix="in" uri="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        <namespace kind="supplement" prefix="io6" uri="http://www.w3.org/2005/08/addressing"/>
+        <namespace kind="supplement" prefix="in5" uri="wsdl.http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="in6" uri="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="in7" uri="http://IBCRA_Mediaciones_Lib/ObtenerHistoricoInformativa"/>
+        <namespace kind="supplement" prefix="out3" uri="http://IBCRAAI/AIS/AIS_ObtenerComentarioSolicitud"/>
+        <namespace kind="supplement" prefix="out2" uri="wsdl.http://IBCRAAI/AIS/AIS_ObtenerComentarioSolicitud"/>
+        <namespace kind="supplement" prefix="out" uri="http://IBCRABO"/>
+    </namespaces>
+    <mappingDeclaration name="output_map_res_1">
+        <input path="body"/>
+        <output path="body"/>
+        <foreach>
+            <input path="ObtenerComentarioSolicitudResponse/output_ObtenerComentarioSolicitud/ComentariosInformativa"/>
+            <output path="invokeResponse/ComentariosInformativa/Comentarios"/>
+            <move>
+                <input path="Solicitud_Id"/>
+                <output path="Solicitud_Id"/>
+            </move>
+            <task type="todo"/>
+            <move>
+                <input path="Comentario"/>
+                <output path="Comentario"/>
+            </move>
+            <move>
+                <input path="Id_Estado_Comentario"/>
+                <output path="Id_Estado_Comentario"/>
+            </move>
+            <move>
+                <input path="Estado"/>
+                <output path="Estado"/>
+            </move>
+            <move>
+                <input path="Actividad_Id"/>
+                <output path="Actividad_Id"/>
+            </move>
+            <move>
+                <input path="Legajo"/>
+                <output path="Legajo"/>
+            </move>
+            <move>
+                <input path="LegajoDescripcion"/>
+                <output path="LegajoDescripcion"/>
+            </move>
+            <move>
+                <input path="Actividad_Desc"/>
+                <output path="Actividad_Desc"/>
+            </move>
+            <move>
+                <input path="FechaComentario"/>
+                <output path="FechaComentario"/>
+            </move>
+        </foreach>
+    </mappingDeclaration>
+</mappingRoot>

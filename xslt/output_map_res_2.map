@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" targetNamespace="http://IBCRA_AIS/xslt/output_map_res_2" version="8.0.4.0" xmlns:map="http://IBCRA_AIS/xslt/output_map_res_2">
+    <input correlationContext="" message="{http://IBCRA_Mediaciones_Lib/Inserts/Inserts}InsertarCUPResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://IBCRAAI/AIS/AIS_InsertCUP}invokeResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in2" uri="wsdl.http://IBCRA_Mediaciones_Lib/Inserts/Inserts"/>
+        <namespace kind="supplement" prefix="in4" uri="http://IBCRA_Mediaciones_Lib/InsertarHistoricoInformativa"/>
+        <namespace kind="supplement" prefix="in3" uri="http://IBCRA_Mediaciones_Lib/UpdateNumerosDiasCalendarioInformativa"/>
+        <namespace kind="supplement" prefix="io5" uri="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"/>
+        <namespace kind="supplement" prefix="io4" uri="http://www.w3.org/2003/05/soap-envelope"/>
+        <namespace kind="supplement" prefix="io3" uri="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"/>
+        <namespace kind="supplement" prefix="io2" uri="http://www.ibm.com/websphere/sibx/smo/v6.0.1"/>
+        <namespace kind="supplement" prefix="in9" uri="http://IBCRA_Mediaciones_Lib/Inserts/Inserts"/>
+        <namespace kind="supplement" prefix="io6" uri="http://www.w3.org/2005/08/addressing"/>
+        <namespace kind="supplement" prefix="in5" uri="http://IBCRA_Mediaciones_Lib/InsertarInformativaReintento"/>
+        <namespace kind="supplement" prefix="in6" uri="http://IBCRA_Mediaciones_Lib/InsertarSolicitudInformativa"/>
+        <namespace kind="supplement" prefix="in" uri="http://IBCRA_Mediaciones_Lib/InsertarComentario"/>
+        <namespace kind="supplement" prefix="in7" uri="http://IBCRA_Mediaciones_Lib/InsertarActividadInformativa"/>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        <namespace kind="supplement" prefix="in8" uri="http://IBCRA_Mediaciones_Lib/InsertarCUP"/>
+        <namespace kind="supplement" prefix="out2" uri="http://IBCRAAI/AIS/AIS_InsertCUP"/>
+        <namespace kind="supplement" prefix="out" uri="wsdl.http://IBCRAAI/AIS/AIS_InsertCUP"/>
+    </namespaces>
+    <mappingDeclaration name="output_map_res_2">
+        <input path="body"/>
+        <output path="body"/>
+        <move>
+            <input path="InsertarCUPResponse/output_InsertarCUP"/>
+            <output path="invokeResponse/Contador"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

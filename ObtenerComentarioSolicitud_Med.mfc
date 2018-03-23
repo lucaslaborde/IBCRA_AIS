@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRAAI/AIS/AIS_ObtenerComentarioSolicitud" xmlns:ns2="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc" name="ObtenerComentarioSolicitud_Med" targetNamespace="http://IBCRA_AIS/ObtenerComentarioSolicitud_Med">
+  <import location="AIS_ObtenerComentarioSolicitud.wsdl" namespace="http://IBCRAAI/AIS/AIS_ObtenerComentarioSolicitud"/>
+  <import location="ObtenerActividadDesc/ObtenerActividadDesc.wsdl" namespace="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout.retryOn" group="IBCRA_AIS.ObtenerComentarioSolicitud_Med" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout.retryCount" group="IBCRA_AIS.ObtenerComentarioSolicitud_Med" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout.retryDelay" group="IBCRA_AIS.ObtenerComentarioSolicitud_Med" value="0"/>
+  <reference name="ObtenerActividadDescPartner" portType="ns2:ObtenerActividadDesc"/>
+  <interface portType="ns1:AIS_ObtenerComentarioSolicitud">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Double-click input_map to implement the input map.
+2. Complete the remaining task in the response flow.</note>
+        <node displayName="invoke : AIS_ObtenerComentarioSolicitud" name="AIS_ObtenerComentarioSolicitud_invoke_Input" type="Input">
+          <outputTerminal type="ns1:invokeMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="ObtenerComentarioSolicitud : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout" type="Callout">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerComentarioSolicitud"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.ObtenerComentarioSolicitud_Med" promotedPropertyName="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.ObtenerComentarioSolicitud_Med" promotedPropertyName="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.ObtenerComentarioSolicitud_Med" promotedPropertyName="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout.retryDelay"/>
+          <inputTerminal type="ns2:ObtenerComentarioSolicitudRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerComentarioSolicitud/input_map_req_1.xsl"/>
+          <property name="XMXMap" value="ObtenerComentarioSolicitud/input_map_req_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:invokeMsg"/>
+          <outputTerminal type="ns2:ObtenerComentarioSolicitudRequestMsg">
+            <wire targetNode="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <note mfcex:x="20" mfcex:y="250">TODO: Double-click output_map to implement the output map.</note>
+        <node displayName="ObtenerComentarioSolicitud : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerComentarioSolicitud_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerComentarioSolicitud"/>
+          <outputTerminal type="ns2:ObtenerComentarioSolicitudResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="ns2:ObtenerComentarioSolicitudRequestMsg"/>
+        </node>
+        <node displayName="invoke : AIS_ObtenerComentarioSolicitud" name="AIS_ObtenerComentarioSolicitud_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerComentarioSolicitud/output_map_res_1.xsl"/>
+          <property name="XMXMap" value="ObtenerComentarioSolicitud/output_map_res_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns2:ObtenerComentarioSolicitudResponseMsg"/>
+          <outputTerminal type="ns1:invokeResponseMsg">
+            <wire targetNode="AIS_ObtenerComentarioSolicitud_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow mfcex:autoLayout="false">
+        <node displayName="invoke : AIS_ObtenerComentarioSolicitud" name="AIS_ObtenerComentarioSolicitud_invoke_ErrorInput" type="ErrorInput" mfcex:x="10" mfcex:y="20">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_ObtenerComentarioSolicitud" name="AIS_ObtenerComentarioSolicitud_invoke_InputResponse" type="InputResponse" mfcex:x="537" mfcex:y="20">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail" type="Fail" mfcex:x="284" mfcex:y="20">
+          <inputTerminal type="XMLSchema:anyType"/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

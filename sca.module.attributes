@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scdl:moduleAndLibraryAttributes xmlns:scdl="http://www.ibm.com/xmlns/prod/websphere/scdl/6.0.0" versionValue="" versionProvider="" asyncRetryCount="0">
+  <boImplementation>
+    <xci/>
+  </boImplementation>
+  <scdl:libraryDependency name="IBCRA_AIS_Lib" version=""/>
+  <scdl:libraryDependency name="IBCRA_AIS_Library" version=""/>
+  <scdl:libraryDependency name="IBCRA_Mediaciones_Lib" version=""/>
+</scdl:moduleAndLibraryAttributes>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRAAI/AIS/AIS_UpdateNroInstancia" xmlns:ns2="http://IBCRA_Mediaciones_Lib/UpdateNroInstancia/UpdateNroInstancia" name="UpdateNroInstancia_Med" targetNamespace="http://IBCRA_AIS/UpdateNroInstancia_Med">
+  <import location="AIS_UpdateNroInstancia.wsdl" namespace="http://IBCRAAI/AIS/AIS_UpdateNroInstancia"/>
+  <import location="UpdateNroInstancia/UpdateNroInstancia.wsdl" namespace="http://IBCRA_Mediaciones_Lib/UpdateNroInstancia/UpdateNroInstancia"/>
+  <promotedProperty name="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout.retryOn" group="IBCRA_AIS.UpdateNroInstancia_Med" value="0"/>
+  <promotedProperty name="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout.retryCount" group="IBCRA_AIS.UpdateNroInstancia_Med" value="0"/>
+  <promotedProperty name="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout.retryDelay" group="IBCRA_AIS.UpdateNroInstancia_Med" value="0"/>
+  <reference name="UpdateNroInstanciaPartner" portType="ns2:UpdateNroInstancia"/>
+  <interface portType="ns1:AIS_UpdateNroInstancia">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Double-click input_map to implement the input map.
+2. Double-click output_map to implement the output map.</note>
+        <node displayName="invoke : AIS_UpdateNroInstancia" name="AIS_UpdateNroInstancia_invoke_Input" type="Input">
+          <outputTerminal type="ns1:invokeMsg">
+            <wire targetNode="input_map"/>
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_UpdateNroInstancia" name="AIS_UpdateNroInstancia_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node displayName="UpdateNroInstancia : UpdateNroInstanciaPartner" name="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout" type="Callout">
+          <property name="referenceName" value="UpdateNroInstanciaPartner"/>
+          <property name="operationName" value="UpdateNroInstancia"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.UpdateNroInstancia_Med" promotedPropertyName="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.UpdateNroInstancia_Med" promotedPropertyName="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.UpdateNroInstancia_Med" promotedPropertyName="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout.retryDelay"/>
+          <inputTerminal type="ns2:UpdateNroInstanciaRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="UpdateNroInstancia/input_map_req_1.xsl"/>
+          <property name="XMXMap" value="UpdateNroInstancia/input_map_req_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:invokeMsg"/>
+          <outputTerminal type="ns2:UpdateNroInstanciaRequestMsg">
+            <wire targetNode="UpdateNroInstanciaPartner_UpdateNroInstancia_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="UpdateNroInstancia/output_map_req_1.xsl"/>
+          <property name="XMXMap" value="UpdateNroInstancia/output_map_req_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:invokeMsg"/>
+          <outputTerminal type="ns1:invokeResponseMsg">
+            <wire targetNode="AIS_UpdateNroInstancia_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <node displayName="invoke : AIS_UpdateNroInstancia" name="AIS_UpdateNroInstancia_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+      </responseFlow>
+      <errorFlow mfcex:autoLayout="false">
+        <node displayName="invoke : AIS_UpdateNroInstancia" name="AIS_UpdateNroInstancia_invoke_ErrorInput" type="ErrorInput" mfcex:x="10" mfcex:y="20">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_UpdateNroInstancia" name="AIS_UpdateNroInstancia_invoke_InputResponse" type="InputResponse" mfcex:x="537" mfcex:y="20">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail" type="Fail" mfcex:x="243" mfcex:y="20">
+          <inputTerminal type="XMLSchema:anyType"/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

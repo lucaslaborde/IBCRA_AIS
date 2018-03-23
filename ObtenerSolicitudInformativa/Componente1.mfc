@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRAAI/AIS/AIS_ObtenerSolicitudInformativa" xmlns:ns2="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc" name="ObtenerSolicitudInformativa" targetNamespace="http://IBCRA_AIS/ObtenerSolicitudInformativa/ObtenerSolicitudInformativa">
+  <import location="AIS_ObtenerSolicitudInformativa.wsdl" namespace="http://IBCRAAI/AIS/AIS_ObtenerSolicitudInformativa"/>
+  <import location="ObtenerActividadDesc/ObtenerActividadDesc.wsdl" namespace="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+  <promotedProperty name="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout.retryOn" group="IBCRA_AIS.ObtenerSolicitudInformativa" value="0"/>
+  <promotedProperty name="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout.retryCount" group="IBCRA_AIS.ObtenerSolicitudInformativa" value="0"/>
+  <promotedProperty name="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout.retryDelay" group="IBCRA_AIS.ObtenerSolicitudInformativa" value="0"/>
+  <reference name="SocioObtenerActividadDesc" portType="ns2:ObtenerActividadDesc"/>
+  <interface portType="ns1:AIS_ObtenerSolicitudInformativa">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Efectúe una doble pulsación en input_map para implementar la correlación de entrada.
+2. Complete el resto de tareas del flujo de respuesta.</note>
+        <node displayName="invoke : AIS_ObtenerSolicitudInformativa" name="AIS_ObtenerSolicitudInformativa_invoke_Input" type="Input">
+          <outputTerminal type="ns1:invokeMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="ObtenerSolicitudinformativaActividad : SocioObtenerActividadDesc" name="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout" type="Callout">
+          <property name="referenceName" value="SocioObtenerActividadDesc"/>
+          <property name="operationName" value="ObtenerSolicitudinformativaActividad"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.ObtenerSolicitudInformativa" promotedPropertyName="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.ObtenerSolicitudInformativa" promotedPropertyName="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.ObtenerSolicitudInformativa" promotedPropertyName="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout.retryDelay"/>
+          <inputTerminal type="ns2:ObtenerSolicitudinformativaActividadRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerSolicitudActividad/input_map_ObtSolAct.xsl"/>
+          <property name="XMXMap" value="ObtenerSolicitudActividad/input_map_ObtSolAct.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:invokeMsg"/>
+          <outputTerminal type="ns2:ObtenerSolicitudinformativaActividadRequestMsg">
+            <wire targetNode="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <note mfcex:x="20" mfcex:y="250">TODO: Efectúe una doble pulsación en output_map para implementar la correlación de salida.</note>
+        <node displayName="ObtenerSolicitudinformativaActividad : SocioObtenerActividadDesc" name="SocioObtenerActividadDesc_ObtenerSolicitudinformativaActividad_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="SocioObtenerActividadDesc"/>
+          <property name="operationName" value="ObtenerSolicitudinformativaActividad"/>
+          <outputTerminal type="ns2:ObtenerSolicitudinformativaActividadResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="ns2:ObtenerSolicitudinformativaActividadRequestMsg"/>
+        </node>
+        <node displayName="invoke : AIS_ObtenerSolicitudInformativa" name="AIS_ObtenerSolicitudInformativa_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerSolicitudActividad/output_map_ObtSolAct.xsl"/>
+          <property name="XMXMap" value="ObtenerSolicitudActividad/output_map_ObtSolAct.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns2:ObtenerSolicitudinformativaActividadResponseMsg"/>
+          <outputTerminal type="ns1:invokeResponseMsg">
+            <wire targetNode="AIS_ObtenerSolicitudInformativa_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow>
+        <node displayName="invoke : AIS_ObtenerSolicitudInformativa" name="AIS_ObtenerSolicitudInformativa_invoke_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail1"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_ObtenerSolicitudInformativa" name="AIS_ObtenerSolicitudInformativa_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail1" type="Fail">
+          <inputTerminal/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

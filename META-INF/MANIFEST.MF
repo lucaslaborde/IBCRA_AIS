@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Class-Path: IBCRA_AIS_Lib.jar 
+ IBCRA_AIS_Library.jar 
+ IBCRA_Mediaciones_Lib.jar
+Created-By: 1.5.0 (IBM Corporation)
+

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRAAI/AIS/AIS_ObtenerHistoricoInformativa" xmlns:ns2="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc" name="ObtenerHistoricoInformativa" targetNamespace="http://IBCRA_AIS/ObtenerHistoricoInformativa">
+  <import location="AIS_ObtenerHistoricoInformativa.wsdl" namespace="http://IBCRAAI/AIS/AIS_ObtenerHistoricoInformativa"/>
+  <import location="ObtenerActividadDesc/ObtenerActividadDesc.wsdl" namespace="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout.retryOn" group="IBCRA_AIS.ObtenerHistoricoInformativa" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout.retryCount" group="IBCRA_AIS.ObtenerHistoricoInformativa" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout.retryDelay" group="IBCRA_AIS.ObtenerHistoricoInformativa" value="0"/>
+  <reference name="ObtenerActividadDescPartner" portType="ns2:ObtenerActividadDesc"/>
+  <interface portType="ns1:AIS_ObtenerHistoricoInformativa">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Double-click input_map to implement the input map.
+2. Complete the remaining task in the response flow.</note>
+        <node displayName="invoke : AIS_ObtenerHistoricoInformativa" name="AIS_ObtenerHistoricoInformativa_invoke_Input" type="Input">
+          <outputTerminal type="ns1:invokeMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="ObtenerHistoricoInformativa : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout" type="Callout">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerHistoricoInformativa"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.ObtenerHistoricoInformativa" promotedPropertyName="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.ObtenerHistoricoInformativa" promotedPropertyName="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.ObtenerHistoricoInformativa" promotedPropertyName="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout.retryDelay"/>
+          <inputTerminal type="ns2:ObtenerHistoricoInformativaRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerHistoricaInformativa/input_map_req_1.xsl"/>
+          <property name="XMXMap" value="ObtenerHistoricaInformativa/input_map_req_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:invokeMsg"/>
+          <outputTerminal type="ns2:ObtenerHistoricoInformativaRequestMsg">
+            <wire targetNode="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <note mfcex:x="20" mfcex:y="250">TODO: Double-click output_map to implement the output map.</note>
+        <node displayName="ObtenerHistoricoInformativa : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerHistoricoInformativa_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerHistoricoInformativa"/>
+          <outputTerminal type="ns2:ObtenerHistoricoInformativaResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="ns2:ObtenerHistoricoInformativaRequestMsg"/>
+        </node>
+        <node displayName="invoke : AIS_ObtenerHistoricoInformativa" name="AIS_ObtenerHistoricoInformativa_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerHistoricaInformativa/output_map_res_1.xsl"/>
+          <property name="XMXMap" value="ObtenerHistoricaInformativa/output_map_res_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns2:ObtenerHistoricoInformativaResponseMsg"/>
+          <outputTerminal type="ns1:invokeResponseMsg">
+            <wire targetNode="AIS_ObtenerHistoricoInformativa_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow>
+        <node displayName="invoke : AIS_ObtenerHistoricoInformativa" name="AIS_ObtenerHistoricoInformativa_invoke_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_ObtenerHistoricoInformativa" name="AIS_ObtenerHistoricoInformativa_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail" type="Fail">
+          <inputTerminal type="XMLSchema:anyType"/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" targetNamespace="http://IBCRA_AIS/UpdateNroInstancia/output_map_req_1" version="8.0.4.0" xmlns:map="http://IBCRA_AIS/UpdateNroInstancia/output_map_req_1">
+    <input correlationContext="" message="{http://IBCRAAI/AIS/AIS_UpdateNroInstancia}invokeMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://IBCRAAI/AIS/AIS_UpdateNroInstancia}invokeResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io5" uri="wsdl.http://IBCRAAI/AIS/AIS_UpdateNroInstancia"/>
+        <namespace kind="supplement" prefix="io4" uri="http://www.w3.org/2003/05/soap-envelope"/>
+        <namespace kind="supplement" prefix="io3" uri="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"/>
+        <namespace kind="supplement" prefix="io2" uri="http://www.ibm.com/websphere/sibx/smo/v6.0.1"/>
+        <namespace kind="supplement" prefix="io8" uri="http://IBCRAAI/AIS/AIS_UpdateNroInstancia"/>
+        <namespace kind="supplement" prefix="io6" uri="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"/>
+        <namespace kind="supplement" prefix="io7" uri="http://www.w3.org/2005/08/addressing"/>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+    </namespaces>
+    <mappingDeclaration name="output_map_req_1">
+        <input path="body"/>
+        <output path="body"/>
+        <task type="todo">
+            <input path="invoke/Solicitud_Id"/>
+        </task>
+        <task type="todo">
+            <input path="invoke/NroInstancia"/>
+        </task>
+    </mappingDeclaration>
+</mappingRoot>

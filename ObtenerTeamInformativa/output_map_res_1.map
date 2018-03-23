@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" targetNamespace="http://IBCRA_AIS/ObtenerTeamInformativa/output_map_res_1" version="8.0.4.0" xmlns:map="http://IBCRA_AIS/ObtenerTeamInformativa/output_map_res_1">
+    <input correlationContext="" message="{http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc}ObtenerTeamInformativaResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <output correlationContext="" message="{http://IBCRAAI/AIS/AIS_ObtenerTeamInformativa}invokeResponseMsg" sharedContext="" smoName="wsdl-primary" transientContext="" type="smo" types="" xpath="/body"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="in2" uri="http://IBCRA_Mediaciones_Lib/ObtenerComentarioSolicitud"/>
+        <namespace kind="supplement" prefix="in4" uri="http://IBCRA_Mediaciones_Lib/ObtenerSolicitudInformativa"/>
+        <namespace kind="supplement" prefix="in3" uri="http://IBCRA_Mediaciones_Lib/ObtenerInformativas"/>
+        <namespace kind="supplement" prefix="io5" uri="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"/>
+        <namespace kind="supplement" prefix="io4" uri="http://www.w3.org/2003/05/soap-envelope"/>
+        <namespace kind="supplement" prefix="io3" uri="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"/>
+        <namespace kind="supplement" prefix="io2" uri="http://www.ibm.com/websphere/sibx/smo/v6.0.1"/>
+        <namespace kind="supplement" prefix="in9" uri="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="in10" uri="http://IBCRA_Mediaciones_Lib/ObtenerHistoricoInformativa"/>
+        <namespace kind="supplement" prefix="io6" uri="http://www.w3.org/2005/08/addressing"/>
+        <namespace kind="supplement" prefix="in5" uri="http://IBCRA_Mediaciones_Lib/ObtenerTeamInformativa"/>
+        <namespace kind="supplement" prefix="in6" uri="http://IBCRA_Mediaciones_Lib/ObtenerDatosPortal"/>
+        <namespace kind="supplement" prefix="in" uri="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="in7" uri="wsdl.http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+        <namespace kind="supplement" prefix="io" uri="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        <namespace kind="supplement" prefix="in8" uri="http://IBCRA_Mediaciones_Lib/ObtenerSolicitudEstadoIdCUP"/>
+        <namespace kind="supplement" prefix="out3" uri="http://IBCRAAI/AIS/AIS_ObtenerTeamInformativa"/>
+        <namespace kind="supplement" prefix="out2" uri="wsdl.http://IBCRAAI/AIS/AIS_ObtenerTeamInformativa"/>
+        <namespace kind="supplement" prefix="out" uri="http://IBCRABO"/>
+    </namespaces>
+    <mappingDeclaration name="output_map_res_1">
+        <input path="body"/>
+        <output path="body"/>
+        <foreach>
+            <input path="ObtenerTeamInformativaResponse/output_ObtenerTeamInformativa/TeamInformativa"/>
+            <output path="invokeResponse/teamsInformativa/TeamInformativa"/>
+            <move>
+                <input path="Actividad"/>
+                <output path="Actividad"/>
+            </move>
+            <move>
+                <input path="slaEtapa"/>
+                <output path="slaEtapa"/>
+            </move>
+            <move>
+                <input path="ActividadId"/>
+                <output path="ActividadId"/>
+            </move>
+            <move>
+                <input path="rolBPM"/>
+                <output path="rolBPM"/>
+            </move>
+        </foreach>
+    </mappingDeclaration>
+</mappingRoot>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ibm.wbit.wiring.ui.ext.model="http:///com/ibm/wbit/wiring/ui/ext/model.ecore" xmlns:extensionmodel="http:///extensionmodel.ecore" xmlns:sb="http://com.ibm.wbit.stickyboard.model/model/StickyBoard.xsd">
+  <extensionmodel:ExtensionMap namespace="http://com.ibm.wbit.stickyboard.model/model/StickyBoard.xsd">
+    <extensions>
+      <extendedObject href="sca.module#//@module"/>
+      <extensionObject xsi:type="sb:StickyDocument">
+        <stickyBoard id="default"/>
+      </extensionObject>
+    </extensions>
+  </extensionmodel:ExtensionMap>
+  <extensionmodel:ExtensionMap namespace="http://www.ibm.com/xmlns/prod/websphere/scdl/6.0.0">
+    <extensions>
+      <extendedObject href="IBCRAUpdate.import#//@import"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/6.0.0}SCAImportBinding" unknown="false" visible="true" x="644" y="31"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_UpdateNroInstancia.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="30"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="UpdateNroInstancia_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="30"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="IBCRASelect.import#//@import"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/6.0.0}SCAImportBinding" unknown="false" visible="true" x="651" y="721"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerDatosPortal_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="858"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerInformativas.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="651"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerDatosPortal.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="858"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerHistoricoInformativa.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="789"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerInformativas_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" unknown="false" visible="true" x="296" y="651"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerHistoricoInformativa_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="789"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerComentarioSolicitud.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="927"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerComentarioSolicitud_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="927"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_InsertarComentario.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="237"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="IBCRAInsert.import#//@import"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" unknown="false" visible="true" x="653" y="169"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="InsertarComentarios_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="237"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_InsertarHistoricoInformativa.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="168"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="InsertarHistoricoInformativa_med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="168"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerSolicitudEstadoIdCUP_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="513"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerTeamInformativa.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="375"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerTeamInformativa_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="375"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerSolicitudInformativa.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="444"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerRolesDeInformativa.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="582"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerRolesDeInformativa.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="582"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerRolesDeActividad.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="1065"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerRolesDeActividad.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="1065"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerInformativasCombo.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="720"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerInformativasCombo.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="720"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="AIS_ObtenerActividadDesc.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="996"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerActividadDesc.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="996"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="sca.module#//@module"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ModuleExtension" autoLayout="true"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerSolicitudInformativa.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="444"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="Insertar_CUP.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="99"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="InsertarCup_Med.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="99"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerSolicitudEstadoID_CUP_AIS.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="513" bound="true"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="ObtenerPeriodoCabecera_AIS.export#//@export"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:ExportExtension" unknown="false" visible="true" x="30" y="306"/>
+    </extensions>
+    <extensions>
+      <extendedObject href="Med_ObtenerPeriodoCabecera.component#//@Component"/>
+      <extensionObject xsi:type="com.ibm.wbit.wiring.ui.ext.model:NodeExtension" type="{http://www.ibm.com/xmlns/prod/websphere/scdl/mfc/6.0.0}MediationFlowImplementation" unknown="false" visible="true" x="296" y="306"/>
+    </extensions>
+  </extensionmodel:ExtensionMap>
+</xmi:XMI>

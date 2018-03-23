@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mediationFlow xmlns="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlow" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:mfcex="http://www.ibm.com/xmlns/prod/websphere/2010/MediationFlowExtension" xmlns:ns1="http://IBCRAAI/AIS/AIS_ObtenerDatosPortal" xmlns:ns2="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc" name="ObtenerDatosPortal" targetNamespace="http://IBCRA_AIS/ObtenerDatosPortal">
+  <import location="AIS_ObtenerDatosPortal.wsdl" namespace="http://IBCRAAI/AIS/AIS_ObtenerDatosPortal"/>
+  <import location="ObtenerActividadDesc/ObtenerActividadDesc.wsdl" namespace="http://IBCRA_Mediaciones_Lib/ObtenerActividadDesc/ObtenerActividadDesc"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout.retryOn" group="IBCRA_AIS.ObtenerDatosPortal" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout.retryCount" group="IBCRA_AIS.ObtenerDatosPortal" value="0"/>
+  <promotedProperty name="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout.retryDelay" group="IBCRA_AIS.ObtenerDatosPortal" value="0"/>
+  <reference name="ObtenerActividadDescPartner" portType="ns2:ObtenerActividadDesc"/>
+  <interface portType="ns1:AIS_ObtenerDatosPortal">
+    <operation name="invoke">
+      <requestFlow mfcex:showInputResponse="false" mfcex:showInputFault="false">
+        <note mfcex:x="20" mfcex:y="250">TODO: 1. Double-click input_map to implement the input map.
+2. Complete the remaining task in the response flow.</note>
+        <node displayName="invoke : AIS_ObtenerDatosPortal" name="AIS_ObtenerDatosPortal_invoke_Input" type="Input">
+          <outputTerminal type="ns1:invokeMsg">
+            <wire targetNode="input_map"/>
+          </outputTerminal>
+        </node>
+        <node displayName="ObtenerDatosPortal : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout" type="Callout">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerDatosPortal"/>
+          <property name="retryOn" promotedPropertyGroup="IBCRA_AIS.ObtenerDatosPortal" promotedPropertyName="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout.retryOn"/>
+          <property name="retryCount" promotedPropertyGroup="IBCRA_AIS.ObtenerDatosPortal" promotedPropertyName="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout.retryCount"/>
+          <property name="retryDelay" promotedPropertyGroup="IBCRA_AIS.ObtenerDatosPortal" promotedPropertyName="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout.retryDelay"/>
+          <inputTerminal type="ns2:ObtenerDatosPortalRequestMsg"/>
+        </node>
+        <node name="input_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerDatosPortal/input_map_req_1.xsl"/>
+          <property name="XMXMap" value="ObtenerDatosPortal/input_map_req_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns1:invokeMsg"/>
+          <outputTerminal type="ns2:ObtenerDatosPortalRequestMsg">
+            <wire targetNode="ObtenerActividadDescPartner_ObtenerDatosPortal_Callout"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </requestFlow>
+      <responseFlow>
+        <note mfcex:x="20" mfcex:y="250">TODO: Double-click output_map to implement the output map.</note>
+        <node displayName="ObtenerDatosPortal : ObtenerActividadDescPartner" name="ObtenerActividadDescPartner_ObtenerDatosPortal_CalloutResponse" type="CalloutResponse">
+          <property name="referenceName" value="ObtenerActividadDescPartner"/>
+          <property name="operationName" value="ObtenerDatosPortal"/>
+          <outputTerminal type="ns2:ObtenerDatosPortalResponseMsg">
+            <wire targetNode="output_map"/>
+          </outputTerminal>
+          <failTerminal type="ns2:ObtenerDatosPortalRequestMsg"/>
+        </node>
+        <node displayName="invoke : AIS_ObtenerDatosPortal" name="AIS_ObtenerDatosPortal_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="output_map" type="XSLTransformation">
+          <property name="root" value="/body"/>
+          <property name="XSLTransform" value="ObtenerDatosPortal/output_map_res_1.xsl"/>
+          <property name="XMXMap" value="ObtenerDatosPortal/output_map_res_1.map"/>
+          <property name="SMOVersion" value="SMO61"/>
+          <inputTerminal type="ns2:ObtenerDatosPortalResponseMsg"/>
+          <outputTerminal type="ns1:invokeResponseMsg">
+            <wire targetNode="AIS_ObtenerDatosPortal_invoke_InputResponse"/>
+          </outputTerminal>
+          <failTerminal/>
+        </node>
+      </responseFlow>
+      <errorFlow>
+        <node displayName="invoke : AIS_ObtenerDatosPortal" name="AIS_ObtenerDatosPortal_invoke_ErrorInput" type="ErrorInput">
+          <outputTerminal name="catchAll" type="XMLSchema:anyType">
+            <wire targetNode="Fail"/>
+          </outputTerminal>
+        </node>
+        <node displayName="invoke : AIS_ObtenerDatosPortal" name="AIS_ObtenerDatosPortal_invoke_InputResponse" type="InputResponse">
+          <inputTerminal type="ns1:invokeResponseMsg"/>
+        </node>
+        <node name="Fail" type="Fail">
+          <inputTerminal type="XMLSchema:anyType"/>
+        </node>
+      </errorFlow>
+    </operation>
+  </interface>
+</mediationFlow>
